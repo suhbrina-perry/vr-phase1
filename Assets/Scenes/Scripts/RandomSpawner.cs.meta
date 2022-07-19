@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b234037ea1a1b9841b9a67a93564ac39
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - prefabInstance: {instanceID: 0}
+  - spawnCountTitle: {instanceID: 0}
+  - hudManager: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
