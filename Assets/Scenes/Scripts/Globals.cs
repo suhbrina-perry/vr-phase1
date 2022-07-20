@@ -11,10 +11,13 @@ public class Globals : MonoBehaviour
     private TextMeshProUGUI selectedCounter;
     [SerializeField]
     private Button groupAddButton;
+    [SerializeField] private TextMeshProUGUI userListBox;
+
 
     public static int numSelected = 0;
     public static int groupSize=2;
-    public string[] selectedUsers;
+    public static string[] selectedUsers;
+    public static List<string> userReference; 
     
     public static string[] groupUsers = new string[] {
                 "Logan Hopkins",
@@ -36,16 +39,26 @@ public class Globals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*selectedUsers[] = "SHE IS CRAZY";
-        Debug.Log(selectedUsers[0]);*/
+        
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
         
-        selectedCounter.text = numSelected.ToString();
+        /*if(numSelected>0)
+        {
+            userListBox.text = "";
+            foreach (string user in selectedUsers)
+            {
+                userListBox.text += user + " ";
+            }
+        }*/
+       
+
+        //selectedCounter.text = numSelected.ToString();
         if (numSelected>=groupSize)
         {
             groupAddButton.gameObject.SetActive(true);
