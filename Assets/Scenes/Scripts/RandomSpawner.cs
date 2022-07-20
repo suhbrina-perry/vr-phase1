@@ -37,9 +37,10 @@ public class RandomSpawner : MonoBehaviour
     {
         Vector3 randomSpawnPosition = new Vector3(Random.Range(-20, 21), 1, Random.Range(-20, 21));
         obj = Instantiate(obj, randomSpawnPosition, Quaternion.identity);
+        
         resName=obj.transform.Find("avNameCanvas/avName").gameObject;
         resName.GetComponent<TextMeshProUGUI>().text = Globals.groupUsers[c].ToString();
-        
+        obj.transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up);
 
 
         if (showIndicator)

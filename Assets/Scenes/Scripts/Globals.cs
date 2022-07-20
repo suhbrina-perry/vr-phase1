@@ -14,8 +14,8 @@ public class Globals : MonoBehaviour
 
     public static int numSelected = 0;
     public static int groupSize=2;
-
-
+    public string[] selectedUsers;
+    
     public static string[] groupUsers = new string[] {
                 "Logan Hopkins",
                 "Milton Dennis",
@@ -31,12 +31,13 @@ public class Globals : MonoBehaviour
 
 
 
-
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        /*selectedUsers[] = "SHE IS CRAZY";
+        Debug.Log(selectedUsers[0]);*/
     }
 
     // Update is called once per frame

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -818,6 +818,7 @@ GameObject:
   - component: {fileID: 401657547}
   - component: {fileID: 401657546}
   - component: {fileID: 401657545}
+  - component: {fileID: 401657549}
   m_Layer: 5
   m_Name: btnGroupCreate
   m_TagString: Untagged
@@ -868,7 +869,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 401657546}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 401657549}
+        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
+        m_MethodName: ClickButtonCreateGroup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &401657546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,6 +941,20 @@ RectTransform:
   m_AnchoredPosition: {x: 283.5905, y: -3.719841}
   m_SizeDelta: {x: 123.637, y: 55.492}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &401657549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401657544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 866bc497af998bb48ba03083de87a8a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabInstance: {fileID: 0}
+  btnCreateGroupInstance: {fileID: 401657544}
 --- !u!1 &438787805
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,6 +1016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabInstance: {fileID: 4990798209361596412, guid: 106cb73bbd2289646852a27db3806547, type: 3}
+  btnCreateGroupInstance: {fileID: 401657544}
 --- !u!114 &438787809
 MonoBehaviour:
   m_ObjectHideFlags: 0
