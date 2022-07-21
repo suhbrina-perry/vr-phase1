@@ -12,11 +12,12 @@ public class Globals : MonoBehaviour
     [SerializeField]
     private Button groupAddButton;
     [SerializeField] private TextMeshProUGUI userListBox;
+    [SerializeField] private GameObject modalWindow;
 
 
     public static int numSelected = 0;
     public static int groupSize=2;
-    public static string[] selectedUsers;
+    public static List<string> selectedUsers;
     public static List<string> userReference; 
     
     public static string[] groupUsers = new string[] {
@@ -39,15 +40,15 @@ public class Globals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        
-        
+        Globals.selectedUsers = new List<string>();
+        //modalWindow.SetActive(true);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         /*if(numSelected>0)
         {
             userListBox.text = "";
@@ -56,8 +57,8 @@ public class Globals : MonoBehaviour
                 userListBox.text += user + " ";
             }
         }*/
-       
 
+        //Debug.Log(selectedUsers.Count);
         selectedCounter.text = numSelected.ToString();
         if (numSelected>=groupSize)
         {
