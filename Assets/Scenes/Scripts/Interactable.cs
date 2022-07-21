@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Threading;
 
 public class Interactable : MonoBehaviour
 {
@@ -82,8 +83,26 @@ public class Interactable : MonoBehaviour
 
     public void clickedAccept()
     {
-        modalWindow.SetActive(false);
+       
         Debug.Log(Globals.selectedUsers.Count);
+        modalWindow.SetActive(false);
+        //StartCoroutine(changeIndicator());
+        int milliseconds = 5000;
+        Thread.Sleep(milliseconds);
+
+        foreach (string reference in Globals.userReference)
+        {
+            var res = GameObject.Find(reference + "/indicator");
+            var isEnabled = res.GetComponent<MeshRenderer>().enabled;
+            var material = res.GetComponent<Renderer>();
+
+            if (isEnabled)
+            {
+                material.material.SetColor("_Color" +
+                     "", Color.green);
+            }
+        }
+
         foreach (string user in Globals.selectedUsers)
         {
             Debug.Log(user);
@@ -91,5 +110,15 @@ public class Interactable : MonoBehaviour
     }
 
 
+
+    IEnumerator changeIndicator()
+    {        
+        
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(5);
+        
+        
+        
+    }
 
 }
