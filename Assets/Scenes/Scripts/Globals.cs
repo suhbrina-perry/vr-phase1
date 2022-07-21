@@ -58,7 +58,7 @@ public class Globals : MonoBehaviour
         }*/
        
 
-        //selectedCounter.text = numSelected.ToString();
+        selectedCounter.text = numSelected.ToString();
         if (numSelected>=groupSize)
         {
             groupAddButton.gameObject.SetActive(true);
