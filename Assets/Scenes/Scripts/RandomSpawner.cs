@@ -11,10 +11,9 @@ public class RandomSpawner : MonoBehaviour
 
     [SerializeField] private GameObject prefabInstance;
 
-    //private GameObject[] avatars=new GameObject[10];
-    //private Dictionary<string, string> avatars = new Dictionary<string, string>();
+
     [SerializeField] private int numOfAvatars = 10;
-    //[SerializeField] private List<string> names;    
+
     private GameObject res, resName;
 
 
@@ -23,18 +22,13 @@ public class RandomSpawner : MonoBehaviour
     {
         Globals.userReference = new List<string>();
         Globals.users = new Dictionary<string, string>();
-        //int randomIndex = Random.Range(0, avatars.Length);
+
         for (int c = 0; c < numOfAvatars; c++)
         {
 
             spawnIt(prefabInstance, c);
 
         }
-        foreach (string reference in Globals.userReference)
-        {
-            //Debug.Log(reference);
-        }
-
 
     }
 
@@ -45,10 +39,10 @@ public class RandomSpawner : MonoBehaviour
         obj.name = System.Guid.NewGuid().ToString();
         Globals.userReference.Add(obj.name);
         Globals.users.Add(obj.name, Globals.groupUsers[c].ToString());
-        //var i = new Globals.User(obj.name, Globals.groupUsers[c].ToString());
+
         resName = obj.transform.Find("avNameCanvas/avName").gameObject;
         resName.GetComponent<TextMeshProUGUI>().text = Globals.groupUsers[c].ToString();
-        //obj.transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up);
+
 
 
 
@@ -59,13 +53,7 @@ public class RandomSpawner : MonoBehaviour
 
 
         }
-        
 
-        /*if (obj.CompareTag("indicator"))
-        {
-
-
-        }*/
     }
 
 

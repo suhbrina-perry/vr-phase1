@@ -10,14 +10,13 @@ public class Globals : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI selectedCounter;
     [SerializeField]
-    private Button groupAddButton;
-    [SerializeField] private TextMeshProUGUI txtUserList;
+    private Button groupAddButton;    
     [SerializeField] private GameObject modalWindow;
-
-
+    private Renderer material;
     public static int numSelected = 0;
     public static int groupSize = 2;
-    public static List<string> selectedUsers;
+    private int c = 0;
+    public static Dictionary<string,string> selectedUsers;
     public static List<string> userReference;
     public static Dictionary<string, string> users;
     public static string[] groupUsers = new string[] {
@@ -37,8 +36,8 @@ public class Globals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        Globals.selectedUsers = new List<string>();
+        StartCoroutine(updateIndicators());
+        Globals.selectedUsers = new Dictionary<string, string>();
         //modalWindow.SetActive(true);
 
     }
@@ -46,28 +45,6 @@ public class Globals : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        
-
-        if (numSelected > 0)
-        {
-            
-            
-            txtUserList.text = "";
-
-            foreach (string user in selectedUsers)
-            {
-                txtUserList.text += user + "\n";
-            }
-
-
-            /*foreach (string user in selectedUsers)
-            {
-                userListBox.text += user + " ";
-            }*/
-
-        }
-
         //Debug.Log(selectedUsers.Count);
         selectedCounter.text = numSelected.ToString();
         if (numSelected >= groupSize)
@@ -79,5 +56,45 @@ public class Globals : MonoBehaviour
         {
             groupAddButton.gameObject.SetActive(false);
         }
+        
     }
+
+    public IEnumerator updateIndicators()
+    {
+
+        while (true)
+        {
+           /* Debug.Log("inside updateIndicators");
+            Debug.Log(Interactable.isAccepted);*/
+            yield return new WaitForSeconds(0);
+            if (Interactable.isAccepted)
+            {
+                foreach (KeyValuePair<string, string> user in Globals.selectedUsers)
+                {
+
+                    var res = GameObject.Find(user.Key + "/indicator");
+                    var isEnabled = res.GetComponent<MeshRenderer>().enabled;
+                    material = res.GetComponent<Renderer>();
+
+                    yield return new WaitForSeconds(5);
+                    //Debug.Log("sdsd");
+                    if (isEnabled)
+                    {
+                        material.material.SetColor("_Color" +
+                             "", Color.green);
+
+                    }
+                    c++;
+
+
+
+
+                }
+            }
+        }
+        
+
+    }
+
+
 }

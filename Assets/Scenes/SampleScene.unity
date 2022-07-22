@@ -993,6 +993,7 @@ MonoBehaviour:
   prefabInstance: {fileID: 0}
   btnCreateGroupInstance: {fileID: 0}
   modalWindow: {fileID: 1768305314}
+  txtUserList: {fileID: 115411153}
 --- !u!1 &396706098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,6 +1242,7 @@ MonoBehaviour:
   prefabInstance: {fileID: 0}
   btnCreateGroupInstance: {fileID: 401657544}
   modalWindow: {fileID: 1768305314}
+  txtUserList: {fileID: 115411153}
 --- !u!1 &438787805
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,6 +1306,7 @@ MonoBehaviour:
   prefabInstance: {fileID: 4990798209361596412, guid: 106cb73bbd2289646852a27db3806547, type: 3}
   btnCreateGroupInstance: {fileID: 401657544}
   modalWindow: {fileID: 1768305314}
+  txtUserList: {fileID: 115411153}
 --- !u!114 &438787809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1318,7 +1321,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedCounter: {fileID: 1670262597}
   groupAddButton: {fileID: 401657545}
-  txtUserList: {fileID: 115411153}
   modalWindow: {fileID: 1768305314}
 --- !u!1 &505493793
 GameObject:
@@ -2802,6 +2804,7 @@ MonoBehaviour:
   prefabInstance: {fileID: 0}
   btnCreateGroupInstance: {fileID: 0}
   modalWindow: {fileID: 1768305314}
+  txtUserList: {fileID: 115411153}
 --- !u!1 &1019075086
 GameObject:
   m_ObjectHideFlags: 0
@@ -3832,6 +3835,7 @@ MonoBehaviour:
   prefabInstance: {fileID: 0}
   btnCreateGroupInstance: {fileID: 0}
   modalWindow: {fileID: 1768305314}
+  txtUserList: {fileID: 115411153}
 --- !u!1 &1937838721
 GameObject:
   m_ObjectHideFlags: 0
