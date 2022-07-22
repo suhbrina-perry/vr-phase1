@@ -11,15 +11,15 @@ public class Globals : MonoBehaviour
     private TextMeshProUGUI selectedCounter;
     [SerializeField]
     private Button groupAddButton;
-    [SerializeField] private TextMeshProUGUI userListBox;
+    [SerializeField] private TextMeshProUGUI txtUserList;
     [SerializeField] private GameObject modalWindow;
 
 
     public static int numSelected = 0;
-    public static int groupSize=2;
+    public static int groupSize = 2;
     public static List<string> selectedUsers;
-    public static List<string> userReference; 
-    
+    public static List<string> userReference;
+    public static Dictionary<string, string> users;
     public static string[] groupUsers = new string[] {
                 "Logan Hopkins",
                 "Milton Dennis",
@@ -31,15 +31,13 @@ public class Globals : MonoBehaviour
                 "Irma Davila",
                 "Lily Burke",
                 "Colin Floyd"
-            };
-
-
-
-    
+    };
+       
 
     // Start is called before the first frame update
     void Start()
     {
+        
         Globals.selectedUsers = new List<string>();
         //modalWindow.SetActive(true);
 
@@ -49,22 +47,35 @@ public class Globals : MonoBehaviour
     void Update()
     {
 
-        /*if(numSelected>0)
+        
+
+        if (numSelected > 0)
         {
-            userListBox.text = "";
+            
+            
+            txtUserList.text = "";
+
             foreach (string user in selectedUsers)
             {
-                userListBox.text += user + " ";
+                txtUserList.text += user + "\n";
             }
-        }*/
+
+
+            /*foreach (string user in selectedUsers)
+            {
+                userListBox.text += user + " ";
+            }*/
+
+        }
 
         //Debug.Log(selectedUsers.Count);
         selectedCounter.text = numSelected.ToString();
-        if (numSelected>=groupSize)
+        if (numSelected >= groupSize)
         {
             groupAddButton.gameObject.SetActive(true);
-            
-        } else
+
+        }
+        else
         {
             groupAddButton.gameObject.SetActive(false);
         }

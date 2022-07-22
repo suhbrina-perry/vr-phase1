@@ -22,6 +22,7 @@ public class RandomSpawner : MonoBehaviour
     void Start()
     {
         Globals.userReference = new List<string>();
+        Globals.users = new Dictionary<string, string>();
         //int randomIndex = Random.Range(0, avatars.Length);
         for (int c = 0; c < numOfAvatars; c++)
         {
@@ -43,6 +44,8 @@ public class RandomSpawner : MonoBehaviour
         obj = Instantiate(obj, randomSpawnPosition, Quaternion.identity);
         obj.name = System.Guid.NewGuid().ToString();
         Globals.userReference.Add(obj.name);
+        Globals.users.Add(obj.name, Globals.groupUsers[c].ToString());
+        //var i = new Globals.User(obj.name, Globals.groupUsers[c].ToString());
         resName = obj.transform.Find("avNameCanvas/avName").gameObject;
         resName.GetComponent<TextMeshProUGUI>().text = Globals.groupUsers[c].ToString();
         //obj.transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up);
@@ -56,7 +59,7 @@ public class RandomSpawner : MonoBehaviour
 
 
         }
-
+        
 
         /*if (obj.CompareTag("indicator"))
         {
