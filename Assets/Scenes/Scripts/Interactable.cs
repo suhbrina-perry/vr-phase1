@@ -11,6 +11,7 @@ public class Interactable : MonoBehaviour
     [SerializeField] private GameObject prefabInstance;
     [SerializeField] private GameObject btnCreateGroupInstance;
     [SerializeField] private GameObject modalWindow;
+    [SerializeField] private GameObject modalWindowEntries;
 
     public static bool isAccepted = false;
     private GameObject resName;
@@ -18,6 +19,7 @@ public class Interactable : MonoBehaviour
     private int c = 0;
     [SerializeField]
     private TextMeshProUGUI txtUserList;
+    
     Color orange = new Color(1.0f, 0.64f, 0.0f);
 
     public void Start()
@@ -80,7 +82,7 @@ public class Interactable : MonoBehaviour
 
     public void clickedDecline()
     {
-        modalWindow.SetActive(false);
+        modalWindowEntries.SetActive(false);
         isAccepted = false;
     }
 
@@ -88,7 +90,7 @@ public class Interactable : MonoBehaviour
     {
         isAccepted = true;
         modalWindow.SetActive(false);
-
+        
         /*foreach (KeyValuePair<string, string> user in Globals.selectedUsers)
         {            
             var res = GameObject.Find(user.Key + "/indicator");
@@ -104,6 +106,11 @@ public class Interactable : MonoBehaviour
         }*/
 
 
+    }
+
+    public void clickedOK()
+    {
+        modalWindowEntries.SetActive(false);
     }
 
     

@@ -15,8 +15,9 @@ public class RandomSpawner : MonoBehaviour
     [SerializeField] private int numOfAvatars = 10;
 
     private GameObject res, resName;
-
-
+    [SerializeField]
+    private TextMeshProUGUI txtUserEntryList;
+    
 
     void Start()
     {
@@ -29,6 +30,23 @@ public class RandomSpawner : MonoBehaviour
             spawnIt(prefabInstance, c);
 
         }
+        var entries = Globals.users.ToDictionary(entry => entry.Key, entry => entry.Value);
+        // Shuffling Dictionary
+        System.Random rand = new System.Random(3);
+        entries = entries.OrderBy(x => rand.Next()).ToDictionary(item => item.Key, item => item.Value);
+        
+        for (var i = 1; i <= entries.Count-Random.Range(-1,7); i++)
+        {
+            KeyValuePair<string, string> user = entries.ElementAt(i);
+            txtUserEntryList.text += user.Value+"\n";
+        }
+        /*foreach (KeyValuePair<string, string> user in entries)
+        {
+
+            txtUserEntryList.text += user.Value + "\n";
+
+
+        }*/
 
     }
 

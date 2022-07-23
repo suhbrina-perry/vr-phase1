@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Linq;
 
 public class Globals : MonoBehaviour
 {
@@ -10,15 +11,18 @@ public class Globals : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI selectedCounter;
     [SerializeField]
-    private Button groupAddButton;    
+    private Button groupAddButton;
     [SerializeField] private GameObject modalWindow;
+    [SerializeField] private GameObject modalWindowEntries;
     private Renderer material;
     public static int numSelected = 0;
     public static int groupSize = 2;
     private int c = 0;
-    public static Dictionary<string,string> selectedUsers;
+    public static Dictionary<string, string> selectedUsers;
     public static List<string> userReference;
     public static Dictionary<string, string> users;
+
+
     public static string[] groupUsers = new string[] {
                 "Logan Hopkins",
                 "Milton Dennis",
@@ -31,14 +35,13 @@ public class Globals : MonoBehaviour
                 "Lily Burke",
                 "Colin Floyd"
     };
-       
+
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(updateIndicators());
-        Globals.selectedUsers = new Dictionary<string, string>();
-        //modalWindow.SetActive(true);
+        Globals.selectedUsers = new Dictionary<string, string>();        
 
     }
 
@@ -49,14 +52,14 @@ public class Globals : MonoBehaviour
         selectedCounter.text = numSelected.ToString();
         if (numSelected >= groupSize)
         {
-            groupAddButton.gameObject.SetActive(true);
+            if(!Interactable.isAccepted) groupAddButton.gameObject.SetActive(true);
 
         }
         else
         {
             groupAddButton.gameObject.SetActive(false);
         }
-        
+
     }
 
     public IEnumerator updateIndicators()
@@ -64,11 +67,12 @@ public class Globals : MonoBehaviour
 
         while (true)
         {
-           /* Debug.Log("inside updateIndicators");
-            Debug.Log(Interactable.isAccepted);*/
+            /* Debug.Log("inside updateIndicators");
+             Debug.Log(Interactable.isAccepted);*/
             yield return new WaitForSeconds(0);
             if (Interactable.isAccepted)
             {
+                groupAddButton.gameObject.SetActive(false);
                 foreach (KeyValuePair<string, string> user in Globals.selectedUsers)
                 {
 
@@ -92,7 +96,7 @@ public class Globals : MonoBehaviour
                 }
             }
         }
-        
+
 
     }
 
