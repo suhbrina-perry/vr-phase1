@@ -21,7 +21,8 @@ public class Globals : MonoBehaviour
     public static Dictionary<string, string> selectedUsers;
     public static List<string> userReference;
     public static Dictionary<string, string> users;
-
+    public static Dictionary<string, string> entries;
+    public static Dictionary<string, string> selectedEntries;
 
     public static string[] groupUsers = new string[] {
                 "Logan Hopkins",
@@ -36,6 +37,10 @@ public class Globals : MonoBehaviour
                 "Colin Floyd"
     };
 
+    private void Awake()
+    {
+        numSelected = 0;
+    }
 
     // Start is called before the first frame update
     void Start()

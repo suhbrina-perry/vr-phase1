@@ -23,6 +23,7 @@ public class RandomSpawner : MonoBehaviour
     {
         Globals.userReference = new List<string>();
         Globals.users = new Dictionary<string, string>();
+        Globals.selectedEntries = new Dictionary<string, string>();
 
         for (int c = 0; c < numOfAvatars; c++)
         {
@@ -30,14 +31,15 @@ public class RandomSpawner : MonoBehaviour
             spawnIt(prefabInstance, c);
 
         }
-        var entries = Globals.users.ToDictionary(entry => entry.Key, entry => entry.Value);
+        Globals.entries = Globals.users.ToDictionary(entry => entry.Key, entry => entry.Value);
         // Shuffling Dictionary
-        System.Random rand = new System.Random(3);
-        entries = entries.OrderBy(x => rand.Next()).ToDictionary(item => item.Key, item => item.Value);
+        System.Random rand = new System.Random();
+        Globals.entries = Globals.entries.OrderBy(x => rand.Next()).ToDictionary(item => item.Key, item => item.Value);
         
-        for (var i = 1; i <= entries.Count-Random.Range(-1,7); i++)
+        for (var i = 1; i <= Random.Range(2,4); i++)
         {
-            KeyValuePair<string, string> user = entries.ElementAt(i);
+            KeyValuePair<string, string> user = Globals.entries.ElementAt(i-1);
+            Globals.selectedEntries.Add(user.Key,user.Value);
             txtUserEntryList.text += user.Value+"\n";
         }
         /*foreach (KeyValuePair<string, string> user in entries)
