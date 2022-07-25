@@ -84,7 +84,7 @@ public class Interactable : MonoBehaviour
 
     public void clickedDecline()
     {
-        modalWindowEntries.SetActive(false);
+        modalWindow.SetActive(false);
         isAccepted = false;
     }
 
