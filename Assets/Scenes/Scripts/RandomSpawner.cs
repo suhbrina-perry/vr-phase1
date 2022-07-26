@@ -54,7 +54,7 @@ public class RandomSpawner : MonoBehaviour
 
     void spawnIt(GameObject obj, int c, bool showIndicator = false)
     {
-        Vector3 randomSpawnPosition = new Vector3(Random.Range(-20, 21), 1, Random.Range(-20, 21));
+        Vector3 randomSpawnPosition = new Vector3(Random.Range(-40, 41), 1, Random.Range(-40, 41));
         obj = Instantiate(obj, randomSpawnPosition, Quaternion.identity);
         obj.name = System.Guid.NewGuid().ToString();
         Globals.userReference.Add(obj.name);
@@ -62,7 +62,9 @@ public class RandomSpawner : MonoBehaviour
 
         resName = obj.transform.Find("avNameCanvas/avName").gameObject;
         resName.GetComponent<TextMeshProUGUI>().text = Globals.groupUsers[c].ToString();
-
+        
+        resName.GetComponent<TextMeshProUGUI>().outlineWidth = 0.1f;
+        resName.GetComponent<TextMeshProUGUI>().outlineColor = new Color32(255, 0, 80, 255);
 
 
 
