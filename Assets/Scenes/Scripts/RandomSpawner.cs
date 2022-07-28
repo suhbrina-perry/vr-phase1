@@ -68,6 +68,8 @@ public class RandomSpawner : MonoBehaviour
 
 
 
+
+
         if (showIndicator)
         {
             res = obj.transform.Find("indicator").gameObject;

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Threading;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class Interactable : MonoBehaviour
 {
@@ -13,19 +14,28 @@ public class Interactable : MonoBehaviour
     [SerializeField] private GameObject btnCreateGroupInstance;
     [SerializeField] private GameObject modalWindow;
     [SerializeField] private GameObject modalWindowEntries;
+    [SerializeField] private GameObject panel1;
+    [SerializeField] private GameObject panel2;
     [SerializeField] private GameObject btnRestart;
 
     public static bool isAccepted = false;
     private GameObject resName;
+    
     private Renderer material;
     private int c = 0;
     [SerializeField]
     private TextMeshProUGUI txtUserList;
-    
+    [SerializeField]
+    private TextMeshProUGUI txtUserEntryList;
+
     Color orange = new Color(1.0f, 0.64f, 0.0f);
 
     public void Start()
     {
+
+
+        if(panel1) panel1.SetActive(true);
+        if(panel2) panel2.SetActive(false);
         //modalWindow.SetActive(false);
 
     }
@@ -109,8 +119,27 @@ public class Interactable : MonoBehaviour
 
 
         }
-        modalWindow.SetActive(false);
         
+        if(panel1) panel1.SetActive(false);
+        if(panel2) panel2.SetActive(true);
+        Globals.entries.Clear();
+        Globals.selectedEntries.Clear();
+        Globals.entries = Globals.users.ToDictionary(entry => entry.Key, entry => entry.Value);
+        // Shuffling Dictionary
+        System.Random rand = new System.Random();
+        Globals.entries = Globals.entries.OrderBy(x => rand.Next()).ToDictionary(item => item.Key, item => item.Value);
+
+        for (var i = 1; i <= Random.Range(2, 4); i++)
+        {
+            KeyValuePair<string, string> user = Globals.entries.ElementAt(i - 1);
+            Globals.selectedEntries.Add(user.Key, user.Value);
+            txtUserEntryList.text += user.Value + "\n";
+        }
+
+        //Debug.Log(panel2);
+        //res.SetActive(true);
+        modalWindow.SetActive(false);
+
         /*foreach (KeyValuePair<string, string> user in Globals.selectedUsers)
         {            
             var res = GameObject.Find(user.Key + "/indicator");
