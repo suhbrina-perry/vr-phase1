@@ -23,6 +23,7 @@ public class Globals : MonoBehaviour
     public static Dictionary<string, string> users;
     public static Dictionary<string, string> entries;
     public static Dictionary<string, string> selectedEntries;
+    public static int check = 0;
 
     public static string[] groupUsers = new string[] {
                 "Logan Hopkins",
@@ -55,7 +56,7 @@ public class Globals : MonoBehaviour
     {
         //Debug.Log(selectedUsers.Count);
         selectedCounter.text = numSelected.ToString();
-        if (numSelected >= groupSize)
+        if (numSelected >= selectedEntries.Count)
         {
             if(!Interactable.isAccepted) groupAddButton.gameObject.SetActive(true);
 

@@ -71,8 +71,8 @@ public class Interactable : MonoBehaviour
 
         }
 
-        
 
+        Globals.groupSize = Globals.numSelected;
     }
 
     
@@ -106,14 +106,14 @@ public class Interactable : MonoBehaviour
     public void clickedAccept()
     {
         isAccepted = true;
-
+        
         foreach (KeyValuePair<string, string> user in Globals.selectedUsers)
         {
             //Debug.Log("oops " + user.Value);
             if (!Globals.selectedEntries.ContainsKey(user.Key))
             {
                 isAccepted = false;
-                Debug.Log("oops " + user.Value);
+                //Debug.Log("oops " + user.Value);
                 
             }
 
@@ -122,19 +122,72 @@ public class Interactable : MonoBehaviour
         
         if(panel1) panel1.SetActive(false);
         if(panel2) panel2.SetActive(true);
-        Globals.entries.Clear();
-        Globals.selectedEntries.Clear();
-        Globals.entries = Globals.users.ToDictionary(entry => entry.Key, entry => entry.Value);
-        // Shuffling Dictionary
-        System.Random rand = new System.Random();
-        Globals.entries = Globals.entries.OrderBy(x => rand.Next()).ToDictionary(item => item.Key, item => item.Value);
 
-        for (var i = 1; i <= Random.Range(2, 4); i++)
+        var objects = GameObject.FindGameObjectsWithTag("Avatar");
+
+       
+
+        if (panel2)
         {
-            KeyValuePair<string, string> user = Globals.entries.ElementAt(i - 1);
-            Globals.selectedEntries.Add(user.Key, user.Value);
-            txtUserEntryList.text += user.Value + "\n";
+            if(Globals.check==0)
+            {
+                foreach (var obj in objects)
+                {
+                    var res = obj.transform.Find("indicator").gameObject;
+                    var isEnabled = res.GetComponent<MeshRenderer>().enabled;
+                    var material = res.GetComponent<Renderer>();
+                    res.GetComponent<MeshRenderer>().enabled = false;
+
+                }
+
+               
+            }
+            
+
+            Globals.entries.Clear();
+            Globals.selectedEntries.Clear();
+            Globals.selectedUsers.Clear();
+            Globals.entries = Globals.users.ToDictionary(entry => entry.Key, entry => entry.Value);
+            Globals.numSelected = 0;
+            // Shuffling Dictionary
+            System.Random rand = new System.Random();
+            Globals.entries = Globals.entries.OrderBy(x => rand.Next()).ToDictionary(item => item.Key, item => item.Value);
+
+            for (var i = 1; i <= Random.Range(2, 4); i++)
+            {
+                KeyValuePair<string, string> user = Globals.entries.ElementAt(i - 1);
+                Globals.selectedEntries.Add(user.Key, user.Value);
+                txtUserEntryList.text += user.Value + "\n";
+            }
+            if(Globals.check>0)
+            {
+                foreach (var obj in objects)
+                {
+                    var res = obj.transform.Find("indicator").gameObject;
+                    var isEnabled = res.GetComponent<MeshRenderer>().enabled;
+                    var material = res.GetComponent<Renderer>();
+                    res.GetComponent<MeshRenderer>().enabled = false;
+                    if (!isEnabled)
+                    {
+                        obj.SetActive(false);
+                        Debug.Log(isEnabled+" not enabled");
+                    }
+
+
+                }
+            }
+            
+            isAccepted = false;
+            Debug.Log(Globals.check);
+            Globals.check++;
+
         }
+        
+
+            
+        
+
+
 
         //Debug.Log(panel2);
         //res.SetActive(true);
